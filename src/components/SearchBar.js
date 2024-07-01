@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import styles from '../styles/SearchBar.module.css'
 
 
 
@@ -17,9 +18,11 @@ function SearchBar () {
     };
 
     return (
-        <form>
-            <label htmlFor="searchTerm"> Search: </label>
+        <div className={`${styles.searchContainer}`}>
+            <form className={`${styles.center} `}>
+            <label htmlFor="searchTerm" className={styles.space}> Search:  </label>
             <input
+            className={styles.space}
             type='text'
             id='searchTerm'
             value={userSearchTerm}
@@ -27,10 +30,12 @@ function SearchBar () {
             placeholder='search your tunes here!'
 
             />
-            <button type='submit'>
+            <button type='submit' className={styles.space}>
             <FaMagnifyingGlass />
             </button>
         </form>
+        </div>
+        
     );
 };
 

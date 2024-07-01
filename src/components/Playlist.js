@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import styles from '../styles/Playlist.module.css'
 
 function Playlist ({data}) {
 
     return (
-        <div>{data.map(
-            (obj,ident)=>
-                <div key={ident}>
-                    <p>{obj.name}</p>
-                    <p>{obj.artist}</p>
-                    <p>{obj.album}</p>
-                    <p>{obj.id}</p>
-                </div>
-            
-        )}</div>
+        <div className={styles.color}>
+            <form>
+            <button type='submit'>Save to Spotify</button>
+            </form>
+        </div>
     );
 };
 

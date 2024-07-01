@@ -1,0 +1,23 @@
+
+.center { 
+    
+    display: flex;
+    justify-content: center;
+    
+    
+  }
+
+  .searchContainer {
+    background-color: lightblue;
+    width: 50%;
+    margin: 0.7% auto;
+    border-radius: 0.5rem;
+    padding: 1% 0;
+}
+
+.space {
+    margin: 0 1%;
+    font-weight: bold;
+    font-size: 2rem;
+    
+}
