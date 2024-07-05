@@ -19,9 +19,16 @@ function App() {
   const handleAddSelectedTrack = (trackId) => {
     
     const selectedTrack = data.find(track => track.id === trackId);
+
+    const uniqueKey = selectedTrack.id + '_' + Math.random().toString(36).substr(2, 9);
     
-    setCurrentPlayList(prev => [...prev, selectedTrack]);
+    setCurrentPlayList(prev => [...prev, { ...selectedTrack, key: uniqueKey }]);
   };
+
+    const handleDeleteSelectedTrack = (selectedKey) => {
+      setCurrentPlayList(prev => prev.filter(item => item.key !== selectedKey));
+  };
+
 
   return (
     <div >
@@ -30,7 +37,7 @@ function App() {
  
       <div className={styles.container2}>
         <SearchResults data={data}  handleAddSelectedTrack={handleAddSelectedTrack} />
-        <Playlist handleName={handleName} playListName={playListName}  currentPlayList={currentPlayList} />
+        <Playlist handleName={handleName} playListName={playListName}  currentPlayList={currentPlayList} handleDeleteSelectedTrack={handleDeleteSelectedTrack} />
       </div>
 
       <Track   />
