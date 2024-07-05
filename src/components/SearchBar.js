@@ -27,7 +27,7 @@ function SearchBar () {
             id='searchTerm'
             value={userSearchTerm}
             onChange={handleInputChange}
-            placeholder='search your tunes here!'
+            placeholder='search here!'
 
             />
             <button type='submit' className={styles.space}>

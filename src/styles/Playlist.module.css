@@ -1,3 +1,48 @@
-.color {
+
+
+.parentContainerPL {
     background-color: blue;
+    border-radius: 5px;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.playlistForm {
+    flex-direction: column;
+    
+
+}
+
+.playlistFormInput {
+    width: 90%;
+    
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: wheat;
+    -webkit-text-stroke: 0.5px black;
+    word-wrap: break-word; 
+    width: 80%;
+}
+
+.PlaylistTitle {
+    color: black;
+    margin:  2% auto;
+    padding: 0.5%;
+    background-color: lightgrey;
+    border-radius: 5px;
+    margin-left: 10%;
+    width: 80%;
+    max-width: 100%;
+}
+
+.itemListTracks {
+
+    margin: 2%;
+    padding: 1%;
+    background-color: lightcyan;
+    border-radius: 5px;
 }

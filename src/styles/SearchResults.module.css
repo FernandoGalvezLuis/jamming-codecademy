@@ -1,3 +1,12 @@
 .color{
     background-color: red;
+    border-radius: 5px;
+}
+
+.itemListTracks {
+
+    margin: 2%;
+    padding: 1%;
+    background-color: lightcyan;
+    border-radius: 5px;
 }

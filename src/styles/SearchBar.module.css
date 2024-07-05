@@ -1,23 +1,45 @@
-
-.center { 
-    
-    display: flex;
-    justify-content: center;
-    
-    
-  }
-
-  .searchContainer {
-    background-color: lightblue;
-    width: 50%;
-    margin: 0.7% auto;
-    border-radius: 0.5rem;
-    padding: 1% 0;
+.searchContainer {
+  background-color: lightblue;
+  width: 50%;
+  margin: 0.7% auto;
+  border-radius: 0.5rem;
+  padding: 1% 0;
+  display: flex; /* Use flexbox for responsive layout */
+  justify-content: center; /* Center align items horizontally */
+  align-items: center; /* Center align items vertically */
+  min-width: 300px;
 }
 
 .space {
-    margin: 0 1%;
-    font-weight: bold;
-    font-size: 2rem;
-    
+  margin: 5px 10px; /* Adjust margins as needed */
+  font-weight: bold;
+  font-size: 2rem;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure the form takes full width of .searchContainer */
+  flex-wrap: wrap; 
+}
+
+input[type='text'], button {
+  flex: 1; /* Allow input and button to expand and shrink */
+  max-width: 100%; /* Limit maximum width of input and button */
+  min-width: 100px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px; /* Add spacing between input and button */
+  max-width: fit-content;
+}
+
