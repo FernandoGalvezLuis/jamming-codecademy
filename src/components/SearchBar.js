@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import styles from '../styles/SearchBar.module.css'
 
@@ -12,10 +12,10 @@ function SearchBar () {
         setUserSearchTerm(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+   /* const handleSubmit = (e) => {
         e.preventDefault();
         // Logic after submission here
-    };
+    };*/
 
     return (
         <div className={`${styles.searchContainer}`}>
