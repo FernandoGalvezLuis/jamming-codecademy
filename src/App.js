@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState} from 'react';
 import styles from './styles/App.module.css';  // Import CSS Module
 import Playlist from './components/Playlist';
 import Track from './components/Track';
