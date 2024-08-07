@@ -14,10 +14,8 @@ function Existing_Playlists ({userAccessToken}) {
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const [playlistTracks, setPlaylistTracks] = useState([]);
-    const [newPlaylistName, setNewPlaylistName] = useState('');
-    const [newPlaylistDescription, setNewPlaylistDescription] = useState('');
-    const [results, setResults] = useState([]);
-    const [newTracksToAdd, setNewTracksToAdd] = useState([]);
+ 
+
 
     useEffect(  () => {  userAccessToken && fetchPlaylists(userAccessToken, setPlaylists)  }, [userAccessToken] );  
     // Fetch playlists when userAccessToken changes
