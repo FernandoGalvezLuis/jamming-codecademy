@@ -9,7 +9,7 @@ import styles from '../styles/Existing_Playlists.module.css'
 function Existing_Playlists ({userAccessToken}) {
 
 
-    const [userDisplayName, setUserDisplayName] = useState('');
+
 
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);

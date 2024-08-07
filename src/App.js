@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles/App.module.css';  // Import CSS Module
-import New_Playlist from './components/New_Playlist';
+import NewPlaylist from './components/NewPlaylist';
 import Track from './components/Track';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import Existing_Playlists from './components/Existing_Playlists';
+import ExistingPlaylists from './components/ExistingPlaylists';
 
 const client_secret = 'ef4d2252594740a2ae1e028c419db8b6';
 const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
@@ -12,11 +12,11 @@ const redirect_uri = 'http://localhost:3000/callback'; // Example redirect URI, 
 const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public'; // Scopes required for playlist reading
 
 function App() {
-  const [playListName, setPlayListName] = useState('');
-  const [currentPlayList, setCurrentPlayList] = useState([]);
+  const [playListName, /*setPlayListName */] = useState('');
+  const [currentPlayList, /*setCurrentPlayList*/] = useState([]);
   const [userAccessToken, setUserAccessToken] = useState('');
   const [playlists, setPlaylists] = useState([]);
-  const [results, setResults] = useState([]);
+  const [results, /*setResults*/] = useState([]);
 
   // Function to initiate Spotify authentication
   const handleLogin = () => {
@@ -108,7 +108,7 @@ function App() {
   return (
     <div >
       <h1 className={styles.title}>Jamming</h1>
-      <Existing_Playlists  userAccessToken={userAccessToken} />
+      <ExistingPlaylists  userAccessToken={userAccessToken} />
       <>
       <SearchBar  />
       <button onClick={handleLogin}>Log in to Spotify</button>
@@ -117,7 +117,7 @@ function App() {
  
       <div className={styles.container2}>
         <SearchResults data={results}  />
-        <New_Playlist  playListName={playListName}  currentPlayList={currentPlayList}  />
+        <NewPlaylist  playListName={playListName}  currentPlayList={currentPlayList}  />
       </div>
 
       <Track   />
