@@ -25,44 +25,48 @@ function App() {
   };
 
   // Function to handle the callback from Spotify
-  const handleCallback = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const authorizationCode = urlParams.get('code');
+  useEffect(() => {
+    const handleCallback = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const authorizationCode = urlParams.get('code');
 
-    if (authorizationCode) {
-      const controller = new AbortController(); // Create an AbortController instance
-      const signal = controller.signal; // Get the signal for aborting
+      if (authorizationCode) {
+        const controller = new AbortController(); // Create an AbortController instance
+        const signal = controller.signal; // Get the signal for aborting
 
-      try {
-        const response = await fetch('https://accounts.spotify.com/api/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`
-          },
-          body: new URLSearchParams({
-            grant_type: 'authorization_code',
-            code: authorizationCode,
-            redirect_uri: redirect_uri
-          }),
-          signal // Pass the signal to fetch
-        });
+        try {
+          const response = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`
+            },
+            body: new URLSearchParams({
+              grant_type: 'authorization_code',
+              code: authorizationCode,
+              redirect_uri: redirect_uri
+            }),
+            signal // Pass the signal to fetch
+          });
 
-        if (!response.ok) {
-          throw new Error('Failed to exchange authorization code for access token');
+          if (!response.ok) {
+            throw new Error('Failed to exchange authorization code for access token');
+          }
+
+          const data = await response.json();
+          setUserAccessToken(data.access_token);
+        } catch (error) {
+          if (error.name !== 'AbortError') { // Ignore abort errors
+            console.error('Error exchanging authorization code:', error);
+          }
         }
 
-        const data = await response.json();
-        setUserAccessToken(data.access_token);
-      } catch (error) {
-        if (error.name !== 'AbortError') { // Ignore abort errors
-          console.error('Error exchanging authorization code:', error);
-        }
+        return () => controller.abort(); // Cleanup function to abort fetch
       }
+    };
 
-      return () => controller.abort(); // Cleanup function to abort fetch
-    }
-  };
+    handleCallback();
+  }, []);
 
   // Fetch playlists when userAccessToken changes
   useEffect(() => {
