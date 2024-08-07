@@ -15,7 +15,7 @@ function App() {
   const [playListName, /*setPlayListName */] = useState('');
   const [currentPlayList, /*setCurrentPlayList*/] = useState([]);
   const [userAccessToken, setUserAccessToken] = useState('');
-  const [playlists, setPlaylists] = useState([]);
+  const [/*playlists*/, setPlaylists] = useState([]);
   const [results, /*setResults*/] = useState([]);
 
   // Function to initiate Spotify authentication
