@@ -8,7 +8,7 @@ import ExistingPlaylists from './components/ExistingPlaylists';
 
 const client_secret = 'ef4d2252594740a2ae1e028c419db8b6';
 const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
-const redirect_uri = 'http://localhost:3000/callback'; // Example redirect URI, adjust as needed
+const redirect_uri = 'https://testing-jamming-codecademy-with.netlify.app/callback'; // Example redirect URI, adjust as needed
 const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public'; // Scopes required for playlist reading
 
 function App() {
