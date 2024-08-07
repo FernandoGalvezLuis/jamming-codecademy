@@ -1,43 +1,123 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles/App.module.css';  // Import CSS Module
-import Playlist from './components/Playlist';
+import New_Playlist from './components/New_Playlist';
 import Track from './components/Track';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-import data from './components/MockData';
+import Existing_Playlists from './components/Existing_Playlists';
 
+const client_secret = 'ef4d2252594740a2ae1e028c419db8b6';
+const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
+const redirect_uri = 'http://localhost:3000/callback'; // Example redirect URI, adjust as needed
+const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public'; // Scopes required for playlist reading
 
 function App() {
-
   const [playListName, setPlayListName] = useState('');
   const [currentPlayList, setCurrentPlayList] = useState([]);
+  const [userAccessToken, setUserAccessToken] = useState('');
+  const [playlists, setPlaylists] = useState([]);
+  const [results, setResults] = useState([]);
 
-  const handleName = (e) => {
-    setPlayListName(e.target.value)
+  // Function to initiate Spotify authentication
+  const handleLogin = () => {
+    const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${encodeURIComponent(scopes)}`;
+    window.location.href = authorizationUrl;
   };
 
-  const handleAddSelectedTrack = (trackId) => {
-    
-    const selectedTrack = data.find(track => track.id === trackId);
+  // Function to handle the callback from Spotify
+  const handleCallback = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const authorizationCode = urlParams.get('code');
 
-    const uniqueKey = selectedTrack.id + '_' + Math.random().toString(36).substr(2, 9);
-    
-    setCurrentPlayList(prev => [...prev, { ...selectedTrack, key: uniqueKey }]);
+    if (authorizationCode) {
+      const controller = new AbortController(); // Create an AbortController instance
+      const signal = controller.signal; // Get the signal for aborting
+
+      try {
+        const response = await fetch('https://accounts.spotify.com/api/token', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`
+          },
+          body: new URLSearchParams({
+            grant_type: 'authorization_code',
+            code: authorizationCode,
+            redirect_uri: redirect_uri
+          }),
+          signal // Pass the signal to fetch
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to exchange authorization code for access token');
+        }
+
+        const data = await response.json();
+        setUserAccessToken(data.access_token);
+      } catch (error) {
+        if (error.name !== 'AbortError') { // Ignore abort errors
+          console.error('Error exchanging authorization code:', error);
+        }
+      }
+
+      return () => controller.abort(); // Cleanup function to abort fetch
+    }
   };
 
-    const handleDeleteSelectedTrack = (selectedKey) => {
-      setCurrentPlayList(prev => prev.filter(item => item.key !== selectedKey));
-  };
+  // Fetch playlists when userAccessToken changes
+  useEffect(() => {
+    if (userAccessToken) {
+      const controller = new AbortController(); // Create an AbortController instance
+      const signal = controller.signal; // Get the signal for aborting
 
+      const fetchPlaylists = async () => {
+        try {
+          const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+            headers: {
+              'Authorization': `Bearer ${userAccessToken}`
+            },
+            signal // Pass the signal to fetch
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch playlists');
+          }
+
+          const data = await response.json();
+          setPlaylists(data.items);
+        } catch (error) {
+          if (error.name !== 'AbortError') { // Ignore abort errors
+            console.error('Error fetching playlists:', error);
+          }
+        }
+      };
+
+      fetchPlaylists();
+
+      return () => controller.abort(); // Cleanup function to abort fetch
+    }
+  }, [userAccessToken]);
+
+  // Check if we're on the callback URL
+  useEffect(() => {
+    if (window.location.pathname === '/callback') {
+      handleCallback();
+    }
+  }, []);
 
   return (
     <div >
       <h1 className={styles.title}>Jamming</h1>
+      <Existing_Playlists  userAccessToken={userAccessToken} />
+      <>
       <SearchBar  />
+      <button onClick={handleLogin}>Log in to Spotify</button>
+      </>
+      
  
       <div className={styles.container2}>
-        <SearchResults data={data}  handleAddSelectedTrack={handleAddSelectedTrack} />
-        <Playlist handleName={handleName} playListName={playListName}  currentPlayList={currentPlayList} handleDeleteSelectedTrack={handleDeleteSelectedTrack} />
+        <SearchResults data={results}  />
+        <New_Playlist  playListName={playListName}  currentPlayList={currentPlayList}  />
       </div>
 
       <Track   />
@@ -46,3 +126,4 @@ function App() {
 }
 
 export default App;
+

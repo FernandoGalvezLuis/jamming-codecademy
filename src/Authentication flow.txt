@@ -1,0 +1,27 @@
+
+    1 User Authentication:
+        The user is redirected to Spotify for authentication. After they log in and authorize your app, Spotify redirects them back to your application's 
+        callback URL with an authorization code.
+
+    2 Handling the Callback:
+        When the user is redirected back to your app, the URL contains an authorization code as a query parameter 
+        (e.g., http://localhost:3000/callback?code=AQAGTwZNgfwEOfNvPCZduERjGGSufmpQ9J3wHRQOvLNPJCS_WsUKF78zZp-rh-cX6UI9uln6FEV9KFYKS6JC4xa3UUq-d9O7cAhmvrXbhY5UzCh6Du9a5J1e7sBgJs68RXyPpbTG3Au2fHTzXUn4LLN1JOaCTtLk2Iu5yv2oVKrV-QfCLNEHKKhE0L5ApViTldoUAvWL3hQ53WIdBZJJ5TWtiLLuaubBpVWEULOGB8cZ-pP3aTyHU8vdcXo3wQ3CVu2oa49F0y2mBlwBLWh4ohJmK2wpeD514dTM0QSDv5Y9Zykd4l4G).
+
+    3 Extracting the Authorization Code:
+        In the handleCallback function, the authorization code is extracted from the URL using URLSearchParams. This code is used to obtain an access token.
+
+    4 Exchanging the Authorization Code:
+        You send a request to Spotify’s API to exchange the authorization code for an access token. 
+        The access token is then used to make authenticated requests to Spotify's API on behalf of the user.
+
+    5 Single Use of the Authorization Code:
+        The authorization code is valid only for a single exchange, which means you should use it immediately to get the access token. 
+        Once the token is obtained, the authorization code is no longer needed and can be discarded.
+
+Summary
+
+    Authorization Code: Used once to obtain an access token.
+    Access Token: Used to make authenticated API requests.
+
+By handling the callback correctly and using the authorization code once, you ensure that your app operates securely and efficiently 
+without redundant or unnecessary steps.

@@ -4,28 +4,29 @@ import styles from '../styles/SearchBar.module.css'
 
 
 
-function SearchBar () {
+function SearchBar ( { onSearch } ) {
 
-    const [userSearchTerm, setUserSearchTerm] = useState("");
+    const [query, setQuery] = useState("");
 
     const handleInputChange = (e) => {
-        setUserSearchTerm(e.target.value);
+        setQuery(e.target.value);
     };
 
-   /* const handleSubmit = (e) => {
+   const handleSubmit = (e) => {
+        console.log("clicked Search button magnifying glass")
         e.preventDefault();
-        // Logic after submission here
-    };*/
+        onSearch(query);
+    };
 
     return (
         <div className={`${styles.searchContainer}`}>
-            <form className={`${styles.center} `}>
-            <label htmlFor="searchTerm" className={styles.space}> Search:  </label>
+            <form onSubmit={handleSubmit} className={`${styles.center} `}>
+            <label htmlFor="query" className={styles.space}> Search:  </label>
             <input
             className={styles.space}
             type='text'
-            id='searchTerm'
-            value={userSearchTerm}
+            id='query'
+            value={query}
             onChange={handleInputChange}
             placeholder='search here!'
 
@@ -40,3 +41,33 @@ function SearchBar () {
 };
 
 export default SearchBar;
+
+/*
+
+function SearchBar({ onSearch }) {
+    const [query, setQuery] = useState('');
+  
+    const handleChange = (event) => {
+      setQuery(event.target.value);
+    };
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      onSearch(query);
+    };
+  
+    return (
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={query}
+          onChange={handleChange}
+          placeholder="Search for an artist, album, or track..."
+        />
+        <button type="submit">Search</button>
+      </form>
+    );
+  }
+  
+  export default SearchBar;
+  */
