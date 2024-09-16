@@ -39,7 +39,7 @@ const App = () => {
         if (response.ok) {
 
           console.log('Access Token:', data.access_token);
-          
+
           // Store the access token in local storage or a secure place
           localStorage.setItem('access_token', data.access_token);
           setLoggedIn(true);
@@ -53,7 +53,16 @@ const App = () => {
     }
   };
 
+    // Function to check if the user is already logged in
+    const checkLoggedInStatus = () => {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        setLoggedIn(true);
+      }
+    };
+
   useEffect(() => {
+    checkLoggedInStatus();
     handleCallback();
   }, []);
 
