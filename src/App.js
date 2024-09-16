@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin';
 
 const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
-const client_secret = 'ef4d2252594740a2ae1e028c419db8b6'
+const client_secret = 'YOUR_CLIENT_SECRET'; // Move this to a more secure place
 const redirect_uri = 'https://testing-jamming-codecademy-with.netlify.app/callback';
 const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
 
@@ -13,57 +14,24 @@ const App = () => {
     window.location.href = authorizationUrl;
   };
 
-  const handleCallback = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const authorizationCode = urlParams.get('code');
-
-    if (authorizationCode) {
-      // Exchange the authorization code for an access token
-      try {
-        const response = await fetch('https://accounts.spotify.com/api/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams({
-            grant_type: 'authorization_code',
-            code: authorizationCode,
-            redirect_uri,
-            client_id,
-            client_secret,
-          }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-
-          console.log('Access Token:', data.access_token);
-
-          // Store the access token in local storage or a secure place
-          localStorage.setItem('access_token', data.access_token);
-          setLoggedIn(true);
-          window.history.replaceState({}, document.title, '/'); // Clean up URL
-        } else {
-          console.error('Error fetching access token:', data);
-        }
-      } catch (error) {
-        console.error('Network error:', error);
-      }
+  const checkLoggedInStatus = () => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      setLoggedIn(true);
     }
   };
 
-    // Function to check if the user is already logged in
-    const checkLoggedInStatus = () => {
-      const token = localStorage.getItem('access_token');
+  useEffect(() => {
+    const initialize = async () => {
+      const token = await handleCallback_afterLogin(redirect_uri, client_id, client_secret);
       if (token) {
+        localStorage.setItem('access_token', token);
         setLoggedIn(true);
       }
+      checkLoggedInStatus(); // Ensure this is called to reflect the current state
     };
 
-  useEffect(() => {
-    checkLoggedInStatus();
-    handleCallback();
+    initialize();
   }, []);
 
   return (
