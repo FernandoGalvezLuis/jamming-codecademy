@@ -1,4 +1,4 @@
-  const handleCallback_afterLogin = async (redirect_uri, client_id, client_secret, setLoggedIn) => {
+  export const handleCallback_afterLogin = async (redirect_uri, client_id, client_secret, setLoggedIn) => {
     const urlParams = new URLSearchParams(window.location.search);
     const authorizationCode = urlParams.get('code');
 
