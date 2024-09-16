@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin';
 
 const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
-const client_secret = 'YOUR_CLIENT_SECRET'; // Move this to a more secure place
+const client_secret = 'ef4d2252594740a2ae1e028c419db8b6'
 const redirect_uri = 'https://testing-jamming-codecademy-with.netlify.app/callback';
 const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
 
@@ -14,24 +13,19 @@ const App = () => {
     window.location.href = authorizationUrl;
   };
 
-  const checkLoggedInStatus = () => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      setLoggedIn(true);
-    }
-  };
 
-  useEffect(() => {
-    const initialize = async () => {
-      const token = await handleCallback_afterLogin(redirect_uri, client_id, client_secret);
+
+    // Function to check if the user is already logged in
+    const checkLoggedInStatus = () => {
+      const token = localStorage.getItem('access_token');
       if (token) {
-        localStorage.setItem('access_token', token);
         setLoggedIn(true);
       }
-      checkLoggedInStatus(); // Ensure this is called to reflect the current state
     };
 
-    initialize();
+  useEffect(() => {
+    checkLoggedInStatus();
+    handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn);
   }, []);
 
   return (
