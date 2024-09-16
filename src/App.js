@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const client_id = 'b655a4fe1f6b41c285c995b0866bf991'; // Replace with your Spotify client ID
-const redirect_uri = '    https://testing-jamming-codecademy-with.netlify.app/callback'; // Replace with your redirect URI
+const redirect_uri = 'https://testing-jamming-codecademy-with.netlify.app/callback'; // Replace with your redirect URI
 const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public'; // Scopes for Spotify API
 
 const App = () => {
