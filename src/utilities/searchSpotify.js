@@ -1,6 +1,6 @@
 export const searchSpotify = async (query, accessToken, setResults) => {
 
-    console.log('we are calling searchSpotify function ' + ` ${accessToken}`);
+    console.log(`we are calling searchSpotify function ${accessToken}`);
 
     if (!accessToken) { return }
 
