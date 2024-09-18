@@ -16,6 +16,7 @@ function SearchBar ( { onSearch } ) {
         console.log("clicked Search button magnifying glass")
         e.preventDefault();
         onSearch(query);
+        setQuery('');
     };
 
     return (

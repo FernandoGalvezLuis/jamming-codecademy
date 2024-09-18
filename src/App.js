@@ -36,7 +36,7 @@ console.log(accessToken);
     handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn);
   }, []);
 
-  searchSpotify(accessToken, setResults);
+
 
   return (
     <div>
@@ -45,9 +45,13 @@ console.log(accessToken);
         
       ) : (
         <>
-                <p>Logged in</p>
-        <SearchBar onSearch={searchSpotify}/>
+        <p>Logged in</p>
+        <h1 className={styles.title}>Jamming</h1>
+        <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
+        <div className={styles.container2}>
         <SearchResults results={results}/>
+        </div>
+
         </>
 
       )}
