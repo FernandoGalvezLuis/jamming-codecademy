@@ -36,7 +36,7 @@ console.log(accessToken);
     handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn);
   }, []);
 
-  searchSpotify(setResults);
+  searchSpotify(accessToken, setResults);
 
   return (
     <div>
