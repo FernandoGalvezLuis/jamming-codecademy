@@ -19,7 +19,7 @@ const App = () => {
     window.location.href = authorizationUrl;
   };
 
-
+console.log(accessToken);
 
     // Function to check if the user is already logged in
     const checkLoggedInStatus = () => {
