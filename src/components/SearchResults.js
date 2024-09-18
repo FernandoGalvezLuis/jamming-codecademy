@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from '../styles/SearchResults.module.css'
 
-function SearchResults ({data, handleAddSelectedTrack}) {
+function SearchResults ({results, handleAddSelectedTrack}) {
 
     return (
-        <div className={styles.color}>{data.map(
+        <div className={styles.color}>{results.map(
             (obj)=>
                 <div className={styles.itemListTracks} key={obj.id}>
                     <p><strong>Name: </strong>{obj.name}</p>
