@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUserProfile } from './utilities/fetchUserProfile'
-import { fetchPlaylists } from './utilities/fetchPlaylists'
 import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin'
 import { searchSpotify } from './utilities/searchSpotify'
 import SearchBar from './components/SearchBar';
