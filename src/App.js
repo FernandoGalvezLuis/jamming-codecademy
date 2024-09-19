@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUserProfile } from './utilities/fetchUserProfile'
+import { fetchPlaylists } from './utilities/fetchPlaylists'
 import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin'
 import { searchSpotify } from './utilities/searchSpotify'
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
+import ExistingPlaylists from './components/ExistingPlaylists';
 import styles from './styles/App.module.css'
 
 const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
