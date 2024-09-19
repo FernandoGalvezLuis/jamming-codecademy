@@ -6,22 +6,22 @@ import styles from '../styles/Existing_Playlists.module.css'
 
 
 
-function Existing_Playlists ({userAccessToken}) {
+function Existing_Playlists ({accessToken}) {
 
 
-    const [userDisplayName, /*setUserDisplayName*/] = useState('');
+  //  const [userDisplayName, /*setUserDisplayName*/] = useState(''); 
 
-    const [playlists, setPlaylists] = useState([]);
+   // const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const [playlistTracks, setPlaylistTracks] = useState([]);
  
 
 
-    useEffect(  () => {  userAccessToken && fetchPlaylists(userAccessToken, setPlaylists)  }, [userAccessToken] );  
+   // useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [userAccessToken] );  
     // Fetch playlists when userAccessToken changes
 
 
-    useEffect(() => {  fetchPlaylistTracks(selectedPlaylist?.id, userAccessToken, setPlaylistTracks);   }, [selectedPlaylist, userAccessToken]); 
+    useEffect(() => {  fetchPlaylistTracks(selectedPlaylist?.id, accessToken, setPlaylistTracks);   }, [selectedPlaylist, accessToken]); 
     //Fetch tracks from the selectedPlaylist to display
 
     const handleClickPlaylist = (playlist) => {   setSelectedPlaylist(playlist);    };

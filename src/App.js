@@ -16,6 +16,7 @@ const App = () => {
   const [accessToken, setAccessToken] = useState('');
   const [userId, setUserId] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
+  const [playlists, setPlaylists] = useState([]);
   const [results, setResults] = useState([]);
 
   const handleLogin = () => {
@@ -43,6 +44,10 @@ console.log(userId);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
 
+  useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [accessToken] ); 
+
+
+
   return (
     <div>
       {!loggedIn ? (
@@ -53,6 +58,7 @@ console.log(userId);
         <p>Logged in</p>
         <h1 className={styles.title}>Jamming</h1>
         <h1>Hello {userDisplayName}!</h1>
+        <ExistingPlaylists  accessToken={accessToken} userDisplayName={userDisplayName} />
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
         <div className={styles.container2}>
         <SearchResults results={results}/>
