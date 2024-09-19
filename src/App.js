@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { fetchUserProfile } from './utilities/fetchUserProfile'
 import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin'
 import { searchSpotify } from './utilities/searchSpotify'
 import SearchBar from './components/SearchBar';
@@ -13,6 +14,8 @@ const scopes = 'playlist-read-private playlist-read-collaborative playlist-modif
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState('');
+  const [userId, setUserId] = useState('');
+  const [userDisplayName, setUserDisplayName] = useState('');
   const [results, setResults] = useState([]);
 
   const handleLogin = () => {
@@ -20,7 +23,7 @@ const App = () => {
     window.location.href = authorizationUrl;
   };
 
-console.log(accessToken);
+console.log(`${!accessToken} There is no access token`);
 
     // Function to check if the user is already logged in
     const checkLoggedInStatus = () => {
@@ -37,7 +40,7 @@ console.log(accessToken);
     handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken);
   }, []);
 
-
+  useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
 
   return (
     <div>
@@ -48,6 +51,7 @@ console.log(accessToken);
         <>
         <p>Logged in</p>
         <h1 className={styles.title}>Jamming</h1>
+        <h1>Hello {userDisplayName}!</h1>
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
         <div className={styles.container2}>
         <SearchResults results={results}/>
