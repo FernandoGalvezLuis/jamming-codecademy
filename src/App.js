@@ -18,7 +18,6 @@ const App = () => {
   const [accessToken, setAccessToken] = useState('');
   const [userId, setUserId] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
-  const [playlists, setPlaylists] = useState([]);
   const [results, setResults] = useState([]);
 
   const handleLogin = () => {
