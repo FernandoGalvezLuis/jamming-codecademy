@@ -6,18 +6,18 @@ import styles from '../styles/Existing_Playlists.module.css'
 
 
 
-function Existing_Playlists ({accessToken}) {
+function ExistingPlaylists ({accessToken, userDisplayName}) {
 
 
   //  const [userDisplayName, /*setUserDisplayName*/] = useState(''); 
 
-   // const [playlists, setPlaylists] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const [playlistTracks, setPlaylistTracks] = useState([]);
  
 
 
-   // useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [userAccessToken] );  
+    useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [userAccessToken] );  
     // Fetch playlists when userAccessToken changes
 
 
@@ -64,4 +64,4 @@ function Existing_Playlists ({accessToken}) {
     );
 };
 
-export default Existing_Playlists;
+export default ExistingPlaylists;
