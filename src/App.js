@@ -34,7 +34,7 @@ console.log(accessToken);
 
   useEffect(() => {
     checkLoggedInStatus();
-    handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn);
+    handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken);
   }, []);
 
 

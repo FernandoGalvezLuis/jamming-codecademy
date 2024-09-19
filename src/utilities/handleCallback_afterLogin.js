@@ -1,4 +1,4 @@
-  export const handleCallback_afterLogin = async (redirect_uri, client_id, client_secret, setLoggedIn) => {
+  export const handleCallback_afterLogin = async (redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken) => {
     const urlParams = new URLSearchParams(window.location.search);
     const authorizationCode = urlParams.get('code');
 
@@ -23,8 +23,8 @@
 
         if (response.ok) {
 
-          console.log('Access Token:', data.access_token);
-
+          console.log('Access Token after authentication:', data.access_token);
+          setAccessToken(data.access_token); 
           // Store the access token in local storage or a secure place
           localStorage.setItem('access_token', data.access_token);
           setLoggedIn(true);
