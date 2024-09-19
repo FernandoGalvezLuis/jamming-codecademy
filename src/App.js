@@ -45,8 +45,6 @@ console.log(userId);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
 
-  useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [accessToken] ); 
-
 
 
   return (
