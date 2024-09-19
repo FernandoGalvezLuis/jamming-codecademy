@@ -8,6 +8,8 @@ export     const fetchUserProfile = async (accessToken, setUserId, setUserDispla
         }
       });
 
+      console.log('We have passed the mark where we are getting the access token from fetchUserProfile')
+
       if (!response.ok) {
         throw new Error('Failed to fetch user profile');
       }

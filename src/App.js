@@ -25,7 +25,7 @@ const App = () => {
   };
 
 console.log(`${!accessToken} There is no access token`);
-console.log(userId);
+console.log(`userId: ${userId}`);
 
     // Function to check if the user is already logged in
     const checkLoggedInStatus = () => {
