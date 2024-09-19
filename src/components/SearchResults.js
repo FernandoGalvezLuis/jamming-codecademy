@@ -1,25 +1,29 @@
 import React from 'react';
-import styles from '../styles/SearchResults.module.css'
+import styles from '../styles/SearchResults.module.css';
 
-function SearchResults ({results, handleAddSelectedTrack}) {
-
+function SearchResults({ results, handleAddSelectedTrack }) {
     return (
-        <div className={styles.color}>{results.map(
-            (obj)=>
-                <div className={styles.itemListTracks} key={obj.id}>
-                    <p><strong>Name: </strong>{obj.name}</p>
-                    <p> <strong>Artist: </strong>{obj.artists.map(artist => artist.name).join(', ')}</p>
-                    <p><strong>Album: </strong>{obj.album.name}</p>
-                    <img src={obj.album.images[0].url} alt="Album Artwork" style={{ width: 200, height: 200 }} />
-                    <p><strong>uri: </strong>{obj.uri}</p>
-                    <button onClick={() => handleAddSelectedTrack(obj.id)}>Add to Playlist</button>
-                </div>
-            
-        )}</div>
+        <div className={styles.color}>
+            {results.length === 0 ? (
+                <p className={styles.itemListTracks}>No results found or no searches yet. Please try a different search.</p>
+            ) : (
+                results.map((obj) => (
+                    <div className={styles.itemListTracks} key={obj.id}>
+                        <p><strong>Name: </strong>{obj.name}</p>
+                        <p><strong>Artist: </strong>{obj.artists.map(artist => artist.name).join(', ')}</p>
+                        <p><strong>Album: </strong>{obj.album.name}</p>
+                        <img src={obj.album.images[0].url} alt="Album Artwork" style={{ width: 200, height: 200 }} />
+                        <p><strong>uri: </strong>{obj.uri}</p>
+                        <button onClick={() => handleAddSelectedTrack(obj.id)}>Add to Playlist</button>
+                    </div>
+                ))
+            )}
+        </div>
     );
-};
+}
 
 export default SearchResults;
+
 
 /**
  * 
