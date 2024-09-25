@@ -20,15 +20,10 @@ const App = () => {
   const [userDisplayName, setUserDisplayName] = useState('');
   const [results, setResults] = useState([]);
 
-  const handleLogin = () => {
-    const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${encodeURIComponent(scopes)}`;
-    window.location.href = authorizationUrl;
-  };
+  handleLogin(client_id, redirect_uri, scopes),
 
 console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
-
-    // Function to check if the user is already logged in
 
 
   useEffect(() => {
