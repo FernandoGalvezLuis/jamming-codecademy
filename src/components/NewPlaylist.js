@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css'
 
-function Playlist ({handleName, handleDeleteSelectedTrack, playListName, currentPlayList}) {
+function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, currentPlayList}) {
 
     
     const [checkedItems, setCheckedItems] = useState({});
@@ -62,4 +62,4 @@ function Playlist ({handleName, handleDeleteSelectedTrack, playListName, current
     );
 };
 
-export default Playlist;
+export default NewPlaylist;
