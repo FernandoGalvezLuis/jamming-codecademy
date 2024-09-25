@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchUserProfile } from './utilities/fetchUserProfile'
 import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin'
 import { searchSpotify } from './utilities/searchSpotify'
+import { checkLoggedInStatus } from './utilities/checkLoggedInStatus';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import ExistingPlaylists from './components/ExistingPlaylists';
@@ -28,17 +29,10 @@ console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
 
     // Function to check if the user is already logged in
-    const checkLoggedInStatus = () => {
-      const token = localStorage.getItem('access_token');
-      setAccessToken(token);
-  
-      if (token) {
-        setLoggedIn(true);
-      }
-    };
+
 
   useEffect(() => {
-    checkLoggedInStatus();
+    checkLoggedInStatus(setLoggedIn);
     handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken);
   }, []);
 
