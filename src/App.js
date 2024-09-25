@@ -25,10 +25,7 @@ const App = () => {
 console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
 
-  useEffect(() => {
-    checkLoggedInStatus(setLoggedIn, setAccessToken);
-    handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken);
-  }, []);
+  useEffect(() => { checkLoggedInStatus(setLoggedIn, setAccessToken); handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken); }, []);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
 
@@ -57,5 +54,3 @@ console.log(`userId: ${userId}`);
 };
 
 export default App;  
-
-//Adding a random comment
