@@ -8,11 +8,13 @@ import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import ExistingPlaylists from './components/ExistingPlaylists';
 import styles from './styles/App.module.css'
+import dotenv from 'dotenv';
+dotenv.config();
 
-const client_id = 'b655a4fe1f6b41c285c995b0866bf991';
-const client_secret = 'ef4d2252594740a2ae1e028c419db8b6'
-const redirect_uri = 'https://testing-jamming-codecademy-with.netlify.app/callback';
-const scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
+const redirect_uri = process.env.REDIRECT_URI;
+const scopes = process.env.SCOPES;
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
