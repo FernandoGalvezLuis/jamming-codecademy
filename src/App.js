@@ -3,6 +3,7 @@ import { fetchUserProfile } from './utilities/fetchUserProfile'
 import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin'
 import { searchSpotify } from './utilities/searchSpotify'
 import { checkLoggedInStatus } from './utilities/checkLoggedInStatus';
+import { handleLogin } from './utilities/handleLogin';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import ExistingPlaylists from './components/ExistingPlaylists';
