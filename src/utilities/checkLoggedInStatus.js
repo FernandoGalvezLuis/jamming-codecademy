@@ -1,4 +1,4 @@
-export     const checkLoggedInStatus = (setLoggedIn) => {
+export     const checkLoggedInStatus = (setLoggedIn, setAccessToken) => {
     const token = localStorage.getItem('access_token');
     setAccessToken(token);
 

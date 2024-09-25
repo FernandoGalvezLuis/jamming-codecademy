@@ -32,7 +32,7 @@ console.log(`userId: ${userId}`);
 
 
   useEffect(() => {
-    checkLoggedInStatus(setLoggedIn);
+    checkLoggedInStatus(setLoggedIn, setAccessToken);
     handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken);
   }, []);
 
