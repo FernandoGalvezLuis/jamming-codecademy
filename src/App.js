@@ -5,6 +5,7 @@ import { searchSpotify } from './utilities/searchSpotify'
 import { checkLoggedInStatus } from './utilities/checkLoggedInStatus';
 import { handleLogin } from './utilities/handleLogin';
 import { client_id, client_secret, redirect_uri, scopes } from './utilities/Variables_Import';
+import NewPlaylist from './components/NewPlaylist'
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import ExistingPlaylists from './components/ExistingPlaylists';
@@ -38,6 +39,7 @@ console.log(`userId: ${userId}`);
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
         <div className={styles.container2}>
         <SearchResults results={results}/>
+        <NewPlaylist />
         </div>
 
         </>
