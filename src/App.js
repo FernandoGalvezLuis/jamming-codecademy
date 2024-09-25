@@ -21,11 +21,8 @@ const App = () => {
   const [userDisplayName, setUserDisplayName] = useState('');
   const [results, setResults] = useState([]);
 
-  handleLogin(client_id, redirect_uri, scopes),
-
 console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
-
 
   useEffect(() => {
     checkLoggedInStatus(setLoggedIn, setAccessToken);
@@ -34,12 +31,10 @@ console.log(`userId: ${userId}`);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
 
-
-
   return (
     <div>
       {!loggedIn ? (
-        <button onClick={handleLogin}>Log in to Spotify</button>
+        <button onClick={() => handleLogin(client_id, redirect_uri, scopes)}>Log in to Spotify</button>
         
       ) : (
         <>
@@ -60,5 +55,4 @@ console.log(`userId: ${userId}`);
   );
 };
 
-export default App;
-  
+export default App;  
