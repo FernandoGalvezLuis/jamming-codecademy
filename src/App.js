@@ -4,15 +4,11 @@ import { handleCallback_afterLogin } from './utilities/handleCallback_afterLogin
 import { searchSpotify } from './utilities/searchSpotify'
 import { checkLoggedInStatus } from './utilities/checkLoggedInStatus';
 import { handleLogin } from './utilities/handleLogin';
+import { client_id, client_secret, redirect_uri, scopes } from './utilities/Variables_Import';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import ExistingPlaylists from './components/ExistingPlaylists';
 import styles from './styles/App.module.css'
-
-const client_id = process.env.REACT_APP_CLIENT_ID;
-const client_secret = process.env.REACT_APP_CLIENT_SECRET;
-const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
-const scopes = process.env.REACT_APP_SCOPES;
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
