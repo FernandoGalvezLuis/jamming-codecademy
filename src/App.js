@@ -9,11 +9,10 @@ import SearchResults from './components/SearchResults';
 import ExistingPlaylists from './components/ExistingPlaylists';
 import styles from './styles/App.module.css'
 
-
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
-const redirect_uri = process.env.REDIRECT_URI;
-const scopes = process.env.SCOPES;
+const client_id = process.env.REACT_APP_CLIENT_ID;
+const client_secret = process.env.REACT_APP_CLIENT_SECRET;
+const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
+const scopes = process.env.REACT_APP_SCOPES;
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
