@@ -44,7 +44,8 @@ function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, curr
                     <p>{item.name}</p>
                     <p>{item.artists.map(artist => artist.name).join(', ')}</p> {/* Adjust this if needed */}
                     <p>{item.album.name}</p>
-                    <p>{item.id}</p>
+                    <img src={item.album.images[0].url} alt="Album Artwork" style={{ width: 200, height: 200 }} />
+                   {/* <p>{item.id}</p> */}
                     <input
                         type='checkbox'
                         checked={checkedItems[item.id] || false} // Make sure you use a unique key
