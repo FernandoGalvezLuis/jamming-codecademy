@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/SearchResults.module.css';
 
-function SearchResults({ results, handleAddSelectedTrack, setCurrentPlayList }) {
+function SearchResults({ results, setCurrentPlayList }) {
 
     const handleAddSelectedTrack = () => {
         setCurrentPlayList( setCurrentPlayList(prev => [...prev, track]));
