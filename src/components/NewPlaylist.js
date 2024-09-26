@@ -39,20 +39,20 @@ function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, curr
             <input className={styles.playlistFormInput} type="text" placeholder='Jamlist Name' onChange={handleName} />
 
             <div>
-                {currentPlayList.map(item => (
-                    <div className={styles.itemListTracks} key={item.key}>
-                        <p>{item.name}</p>
-                        <p>{item.artist}</p>
-                        <p>{item.album}</p>
-                        <p>{item.id}</p>
-                        <input
-                            type='checkbox'
-                            checked={checkedItems[item.key] || false}
-                            onChange={() => toggleCheckbox(item.key)}
-                        />
-                        {checkedItems[item.key] && <button onClick={() => handleDeleteSelectedTrack(item.key)}>Delete</button>}
-                    </div>
-                ))}
+            {currentPlayList.map(item => (
+                <div className={styles.itemListTracks} key={item.id}>
+                    <p>{item.name}</p>
+                    <p>{item.artists.map(artist => artist.name).join(', ')}</p> {/* Adjust this if needed */}
+                    <p>{item.album.name}</p>
+                    <p>{item.id}</p>
+                    <input
+                        type='checkbox'
+                        checked={checkedItems[item.id] || false} // Make sure you use a unique key
+                        onChange={() => toggleCheckbox(item.id)}
+                    />
+                    {checkedItems[item.id] && <button onClick={() => handleDeleteSelectedTrack(item.id)}>Delete</button>}
+                </div>
+            ))}
         </div>
             {shouldShowDeleteAllButton ? <button onClick={handleDeleteSelectedTracks}>Delete all selected</button> : null }
 
