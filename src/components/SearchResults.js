@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from '../styles/SearchResults.module.css';
 
-function SearchResults({ results, handleAddSelectedTrack }) {
+function SearchResults({ results, handleAddSelectedTrack, setCurrentPlayList }) {
+
+    const handleAddSelectedTrack = () => {
+        setCurrentPlayList( setCurrentPlayList(prev => [...prev, track]));
+    };
+
     return (
         <div className={styles.color}>
             {results.length === 0 ? (

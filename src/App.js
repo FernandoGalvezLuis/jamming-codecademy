@@ -17,7 +17,7 @@ const App = () => {
   const [userId, setUserId] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
   const [playListName, /*setPlayListName */] = useState('');
-  const [currentPlayList, /*setCurrentPlayList*/] = useState([]);
+  const [currentPlayList, setCurrentPlayList] = useState([]);
   const [results, setResults] = useState([]);
 
 console.log(`${!accessToken} There is no access token`);
@@ -40,7 +40,7 @@ console.log(`userId: ${userId}`);
         <ExistingPlaylists  accessToken={accessToken} userDisplayName={userDisplayName} />
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
         <div className={styles.container2}>
-        <SearchResults results={results}/>
+        <SearchResults results={results}  setCurrentPlayList={setCurrentPlayList} />
         <NewPlaylist playListName={playListName}  currentPlayList={currentPlayList}/>
         </div>
 
