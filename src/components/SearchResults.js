@@ -4,7 +4,7 @@ import styles from '../styles/SearchResults.module.css';
 function SearchResults({ results, setCurrentPlayList }) {
 
     const handleAddSelectedTrack = ( track ) => {
-        setCurrentPlayList( setCurrentPlayList(prev => [...prev, track]));
+        setCurrentPlayList( prev => [...prev, track]);
     };
 
     return (
@@ -19,7 +19,7 @@ function SearchResults({ results, setCurrentPlayList }) {
                         <p><strong>Album: </strong>{obj.album.name}</p>
                         <img src={obj.album.images[0].url} alt="Album Artwork" style={{ width: 200, height: 200 }} />
                         <p><strong>uri: </strong>{obj.uri}</p>
-                        <button onClick={() => handleAddSelectedTrack(obj.id)}>Add to Playlist</button>
+                        <button onClick={() => handleAddSelectedTrack(obj)}>Add to Playlist</button>
                     </div>
                 ))
             )}
