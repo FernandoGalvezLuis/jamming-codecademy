@@ -3,7 +3,7 @@ import styles from '../styles/SearchResults.module.css';
 
 function SearchResults({ results, setCurrentPlayList }) {
 
-    const handleAddSelectedTrack = () => {
+    const handleAddSelectedTrack = ( track ) => {
         setCurrentPlayList( setCurrentPlayList(prev => [...prev, track]));
     };
 
