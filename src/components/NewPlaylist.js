@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css'
 
-function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, currentPlayList, setCurrentPlayList}) {
+function NewPlaylist ({handleName, playListName, currentPlayList, setCurrentPlayList}) {
 
     
     const [checkedItems, setCheckedItems] = useState({});
