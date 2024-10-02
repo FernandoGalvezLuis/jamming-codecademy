@@ -19,7 +19,7 @@ const App = () => {
   const [playListName, setPlayListName ] = useState('');
   const [currentPlayList, setCurrentPlayList] = useState([]);
   const [results, setResults] = useState([]);
-
+ 
 console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
 
@@ -39,13 +39,25 @@ console.log(`userId: ${userId}`);
       ) : (
         <>
         <p>Logged in</p>
+
         <h1 className={styles.title}>Jamming</h1>
+
         <h1>Hello {userDisplayName}!</h1>
+
         <ExistingPlaylists  accessToken={accessToken} userDisplayName={userDisplayName} />
+
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
+
         <div className={styles.container2}>
+
         <SearchResults results={results}  setCurrentPlayList={setCurrentPlayList} />
-        <NewPlaylist playListName={playListName}  handleName={handlePlayListNameChange} currentPlayList={currentPlayList}/>
+
+        <NewPlaylist 
+          playListName={playListName}  
+          handleName={handlePlayListNameChange} 
+          currentPlayList={currentPlayList}
+          setCurrentPlayList={setCurrentPlayList} />
+          
         </div>
 
         </>

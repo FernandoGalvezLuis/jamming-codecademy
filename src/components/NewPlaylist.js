@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css'
 
-function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, currentPlayList}) {
+function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, currentPlayList, setCurrentPlayList}) {
 
     
     const [checkedItems, setCheckedItems] = useState({});
@@ -13,12 +13,26 @@ function NewPlaylist ({handleName, handleDeleteSelectedTrack, playListName, curr
             [id]: !prevCheckedItems[id] 
         }));
     };
-
+/*
     const handleDeleteSelectedTracks = () => {
 
         const selectedIds = Object.keys(checkedItems).filter(key => checkedItems[key]);
         selectedIds.forEach(id => handleDeleteSelectedTrack(id));
         setCheckedItems({}); 
+    };
+*/
+    const handleDeleteSelectedTracks = () => {
+        const selectedIds = Object.keys(checkedItems).filter((key) => checkedItems[key]);
+        // Remove selected tracks from currentPlayList
+        const updatedPlayList = currentPlayList.filter((item) => !selectedIds.includes(item.id));
+        setCurrentPlayList(updatedPlayList); // Update state in App component
+        setCheckedItems({}); // Clear checked items after deletion
+    };
+
+    const handleDeleteSelectedTrack = (id) => {
+        // Remove the specific track from currentPlayList
+        const updatedPlayList = currentPlayList.filter((item) => item.id !== id);
+        setCurrentPlayList(updatedPlayList); // Update state in App component
     };
 
     const handleSubmit = (event) => {
