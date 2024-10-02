@@ -30,6 +30,10 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
         // Remove the specific track from currentPlayList
         const updatedPlayList = currentPlayList.filter((item, idx) => !(item.id === id && idx === index));
         setCurrentPlayList(updatedPlayList); // Update state in App component
+        setCheckedItems((prevCheckedItems) => {
+            const { [uniqueKey]: _, ...remaining } = prevCheckedItems; // Remove the deleted track's checked status
+            return remaining; // Return the updated checked items
+        });
     };
 
     const handleSubmit = (event) => {
@@ -55,26 +59,29 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
                 />
 
                 <div>
-                    {currentPlayList.map((item, index) => (
-                        <div className={styles.itemListTracks} key={`${item.id}-${index}`}>
-                            <p>{item.name}</p>
-                            <p>{item.artists.map((artist) => artist.name).join(', ')}</p>
-                            <p>{item.album.name}</p>
-                            <img src={item.album.images[0].url} alt="Album Artwork" style={{ width: 200, height: 200 }} />
+                    {currentPlayList.map((item, index) => {
+                        const uniqueKey = `${item.id}-${index}`; // Create a unique key for each instance
+                        return (
+                            <div className={styles.itemListTracks} key={uniqueKey}>
+                                <p>{item.name}</p>
+                                <p>{item.artists.map((artist) => artist.name).join(', ')}</p>
+                                <p>{item.album.name}</p>
+                                <img src={item.album.images[0].url} alt="Album Artwork" style={{ width: 200, height: 200 }} />
 
-                            <input
-                                type="checkbox"
-                                checked={checkedItems[`${item.id}-${index}`] || false} // Use the unique key
-                                onChange={() => toggleCheckbox(item.id, index)} // Pass both id and index
-                            />
-                            <button
-                                type="button"
-                                onClick={() => handleDeleteSelectedTrack(item.id, index)} // Pass both id and index
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    ))}
+                                <input
+                                    type="checkbox"
+                                    checked={checkedItems[uniqueKey] || false} // Use the unique key
+                                    onChange={() => toggleCheckbox(item.id, index)} // Pass both id and index
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => handleDeleteSelectedTrack(item.id, index)} // Pass both id and index
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        );
+                    })}
                 </div>
                 
                 {shouldShowDeleteAllButton && (
@@ -90,4 +97,5 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
 }
 
 export default NewPlaylist;
+
 
