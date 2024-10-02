@@ -16,7 +16,7 @@ const App = () => {
   const [accessToken, setAccessToken] = useState('');
   const [userId, setUserId] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
-  const [playListName, /*setPlayListName */] = useState('');
+  const [playListName, setPlayListName ] = useState('');
   const [currentPlayList, setCurrentPlayList] = useState([]);
   const [results, setResults] = useState([]);
 
@@ -26,6 +26,10 @@ console.log(`userId: ${userId}`);
   useEffect(() => { checkLoggedInStatus(setLoggedIn, setAccessToken); handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken); }, []);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
+
+  const handlePlayListNameChange = (event) => {
+    setPlayListName(event.target.value);
+};
 
   return (
     <div>
@@ -41,7 +45,7 @@ console.log(`userId: ${userId}`);
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
         <div className={styles.container2}>
         <SearchResults results={results}  setCurrentPlayList={setCurrentPlayList} />
-        <NewPlaylist playListName={playListName}  currentPlayList={currentPlayList}/>
+        <NewPlaylist playListName={playListName}  handleName={handlePlayListNameChange} currentPlayList={currentPlayList}/>
         </div>
 
         </>
