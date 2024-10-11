@@ -17,7 +17,7 @@ function ExistingPlaylists ({accessToken, userDisplayName, playlists, setPlaylis
  
 
 
-    useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [accessToken] );  
+    useEffect(  () => {  accessToken && fetchPlaylists(accessToken, setPlaylists)  }, [accessToken, setPlaylists] );  
     // Fetch playlists when accessToken changes
 
 
