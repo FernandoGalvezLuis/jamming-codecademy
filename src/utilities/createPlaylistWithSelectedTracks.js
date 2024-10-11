@@ -1,6 +1,6 @@
 // utilities/createPlaylistWithSelectedTracks.js
 
-export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, tracks) => {
+export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, tracks, setPlaylists) => {
   if (!accessToken) return;
 
   try {

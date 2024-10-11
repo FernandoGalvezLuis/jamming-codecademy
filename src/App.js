@@ -17,6 +17,7 @@ const App = () => {
   const [userId, setUserId] = useState('');
   const [userDisplayName, setUserDisplayName] = useState('');
   const [playListName, setPlayListName ] = useState('');
+  const [playlists, setPlaylists] = useState([]);
   const [currentPlayList, setCurrentPlayList] = useState([]);
   const [results, setResults] = useState([]);
   
@@ -45,7 +46,13 @@ console.log(`userId: ${userId}`);
 
         <h1>Hello {userDisplayName}!</h1>
 
-        <ExistingPlaylists  accessToken={accessToken} userDisplayName={userDisplayName} />
+        <ExistingPlaylists  
+        accessToken={accessToken} 
+        userDisplayName={userDisplayName} 
+        playlists={playlists} 
+        setPlaylists={setPlaylists}
+        
+        />
 
         <SearchBar onSearch={(query) => searchSpotify(query, accessToken, setResults)} />
 
@@ -59,7 +66,9 @@ console.log(`userId: ${userId}`);
           currentPlayList={currentPlayList}
           setCurrentPlayList={setCurrentPlayList}
           accessToken={accessToken} 
-          userId={userId} />
+          userId={userId}
+          setPlaylists={setPlaylists}
+          />
           
         </div>
 

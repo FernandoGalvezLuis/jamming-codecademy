@@ -52,7 +52,7 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
             return checkedItems[uniqueKey];
         });
     
-        createPlaylistWithSelectedTracks(accessToken, userId, playListName, selectedTracks);
+        createPlaylistWithSelectedTracks(accessToken, userId, playListName, selectedTracks, setPlaylists);
     };
     
 

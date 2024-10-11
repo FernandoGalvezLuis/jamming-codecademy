@@ -6,12 +6,12 @@ import styles from '../styles/Existing_Playlists.module.css'
 
 
 
-function ExistingPlaylists ({accessToken, userDisplayName}) {
+function ExistingPlaylists ({accessToken, userDisplayName, playlists, setPlaylists}) {
 
 
   //  const [userDisplayName, /*setUserDisplayName*/] = useState(''); 
 
-    const [playlists, setPlaylists] = useState([]);
+    
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);
     const [playlistTracks, setPlaylistTracks] = useState([]);
  
