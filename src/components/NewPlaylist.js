@@ -83,7 +83,7 @@ function NewPlaylist({ handleName, playListName, description, setDescription, cu
               <input
                 type="text"
                 name="playlistDescription"
-                value={newPlaylistDescription}
+                value={description}
                 onChange={handleDescription}
               />
             </label>
