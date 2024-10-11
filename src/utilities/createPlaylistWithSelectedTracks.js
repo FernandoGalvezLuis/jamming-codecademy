@@ -1,6 +1,6 @@
 // utilities/createPlaylistWithSelectedTracks.js
 
-export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, tracks, setPlaylists) => {
+export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, tracks, setPlaylists) => {
   if (!accessToken) return;
 
   try {
@@ -13,7 +13,7 @@ export const createPlaylistWithSelectedTracks = async (accessToken, userId, play
       },
       body: JSON.stringify({
         name: playlistName,
-        description: 'A new playlist created from the app',
+        description: description,
         public: true
       })
     });

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css';
 import { createPlaylistWithSelectedTracks } from '../utilities/createPlaylistWithSelectedTracks'
 
-function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlayList, accessToken, userId, setPlaylists }) {
+function NewPlaylist({ handleName, playListName, description, setDescription, currentPlayList, setCurrentPlayList, accessToken, userId, setPlaylists }) {
     const [checkedItems, setCheckedItems] = useState({});
+    
 
     const toggleCheckbox = (id, index) => {
         const uniqueKey = `${id}-${index}`; // Create a unique key for each instance
@@ -24,6 +25,10 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
         
         setCurrentPlayList(updatedPlayList); // Update state in App component
         setCheckedItems({}); // Clear checked items after deletion
+    };
+
+    const handleDescription = (event) => {
+        setDescription(event.target.value);
     };
 
     const handleDeleteSelectedTrack = (id, index) => {
@@ -52,7 +57,7 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
             return checkedItems[uniqueKey];
         });
     
-        createPlaylistWithSelectedTracks(accessToken, userId, playListName, selectedTracks, setPlaylists);
+        createPlaylistWithSelectedTracks(accessToken, userId, playListName, description, selectedTracks, setPlaylists);
     };
     
 
@@ -73,6 +78,15 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
                     placeholder="Jamlist Name"
                     onChange={handleName}
                 />
+                            <label>
+              Playlist Description:
+              <input
+                type="text"
+                name="playlistDescription"
+                value={newPlaylistDescription}
+                onChange={handleDescription}
+              />
+            </label>
 
                 <div>
                     {currentPlayList.map((item, index) => {
