@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css';
 import { createPlaylistWithSelectedTracks } from '../utilities/createPlaylistWithSelectedTracks'
 
-function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlayList, accessToken, userId }) {
+function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlayList, accessToken, userId, setPlaylists }) {
     const [checkedItems, setCheckedItems] = useState({});
 
     const toggleCheckbox = (id, index) => {

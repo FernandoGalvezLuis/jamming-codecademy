@@ -25,6 +25,9 @@ export const createPlaylistWithSelectedTracks = async (accessToken, userId, play
     const playlistData = await createPlaylistResponse.json();
     const newPlaylistId = playlistData.id;
 
+
+    setPlaylists(prevPlaylists => [...prevPlaylists, playlistData]);
+
     // Step 2: Add selected tracks to the newly created playlist
     const urisToAdd = tracks.map(track => track.uri);
     const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${newPlaylistId}/tracks`, {
