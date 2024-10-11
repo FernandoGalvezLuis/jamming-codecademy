@@ -39,14 +39,22 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        console.log(accessToken)
+
+        if (!accessToken) {
+            console.error('No access token available');
+            return;
+        }
+    
         const selectedTracks = currentPlayList.filter((item, index) => {
             const uniqueKey = `${item.id}-${index}`;
             return checkedItems[uniqueKey];
         });
-
-        // Call the refactored createPlaylistWithSelectedTracks function
+    
         createPlaylistWithSelectedTracks(accessToken, userId, playListName, selectedTracks);
     };
+    
 
     const selectedIds = Object.keys(checkedItems).filter((key) => checkedItems[key]);
     const shouldShowDeleteAllButton = selectedIds.length >= 2;
