@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css';
+import { createPlaylistWithSelectedTracks } from '../utilities/createPlaylistWithSelectedTracks'
 
-function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlayList }) {
+function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlayList, accessToken, userId }) {
     const [checkedItems, setCheckedItems] = useState({});
 
     const toggleCheckbox = (id, index) => {
@@ -38,6 +39,13 @@ function NewPlaylist({ handleName, playListName, currentPlayList, setCurrentPlay
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const selectedTracks = currentPlayList.filter((item, index) => {
+            const uniqueKey = `${item.id}-${index}`;
+            return checkedItems[uniqueKey];
+        });
+
+        // Call the refactored createPlaylistWithSelectedTracks function
+        createPlaylistWithSelectedTracks(accessToken, userId, playListName, selectedTracks);
     };
 
     const selectedIds = Object.keys(checkedItems).filter((key) => checkedItems[key]);

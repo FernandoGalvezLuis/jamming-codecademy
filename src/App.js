@@ -19,6 +19,7 @@ const App = () => {
   const [playListName, setPlayListName ] = useState('');
   const [currentPlayList, setCurrentPlayList] = useState([]);
   const [results, setResults] = useState([]);
+  
  
 console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
@@ -56,7 +57,9 @@ console.log(`userId: ${userId}`);
           playListName={playListName}  
           handleName={handlePlayListNameChange} 
           currentPlayList={currentPlayList}
-          setCurrentPlayList={setCurrentPlayList} />
+          setCurrentPlayList={setCurrentPlayList}
+          accessToken={accessToken} 
+          userId={userId} />
           
         </div>
 
