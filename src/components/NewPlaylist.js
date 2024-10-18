@@ -51,12 +51,12 @@ function NewPlaylist({ handleName, playListName, description, setDescription, cu
             console.error('NewPlaylist: No access token available');
             return;
         }
-    
+    /*
         const selectedTracks = currentPlayList.filter((item, index) => {
             const uniqueKey = `${item.id}-${index}`;
             return checkedItems[uniqueKey];
         });
-    
+    */
         createPlaylistWithSelectedTracks(accessToken, userId, currentPlayList, playListName, description, selectedTracks, setPlaylists);
     };
     
