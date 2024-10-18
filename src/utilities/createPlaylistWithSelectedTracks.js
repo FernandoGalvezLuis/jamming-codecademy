@@ -1,6 +1,6 @@
 // utilities/createPlaylistWithSelectedTracks.js
 
-export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, setPlaylists, currentPlayList) => {
+export const createPlaylistWithSelectedTracks = async (accessToken, userId, playListName, description, setPlaylists, currentPlayList) => {
   console.log(`currentPlaylist from cretePlaylistsWST: ${currentPlayList}`)
   console.log(`First uri: ${currentPlayList[0].uri}`)
   
@@ -15,7 +15,7 @@ export const createPlaylistWithSelectedTracks = async (accessToken, userId, play
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: playlistName,
+        name: playListName,
         description: description,
         public: true
       })
