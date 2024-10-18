@@ -57,7 +57,7 @@ function NewPlaylist({ handleName, playListName, description, setDescription, cu
             return checkedItems[uniqueKey];
         });
     */
-        createPlaylistWithSelectedTracks(accessToken, userId, currentPlayList, playListName, description, selectedTracks, setPlaylists);
+        createPlaylistWithSelectedTracks(accessToken, userId, currentPlayList, playListName, description, setPlaylists);
     };
     
 
