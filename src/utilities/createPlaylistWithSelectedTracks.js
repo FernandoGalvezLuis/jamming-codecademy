@@ -1,6 +1,8 @@
 // utilities/createPlaylistWithSelectedTracks.js
 
 export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, tracks, setPlaylists) => {
+  console.log(`tracks from cretePlaylistsWST: ${tracks}`)
+  
   if (!accessToken) return;
 
   try {
@@ -43,7 +45,7 @@ export const createPlaylistWithSelectedTracks = async (accessToken, userId, play
     });
 
     if (!addTracksResponse.ok) {
-      throw new Error('Failed to add tracks to playlist');
+      throw new Error('createPWST: Failed to add tracks to playlist');
     }
 
     // Success message can be handled here if needed

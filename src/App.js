@@ -22,10 +22,10 @@ const App = () => {
   const [results, setResults] = useState([]);
   const [description, setDescription] = useState('');
   
- 
+ /*
 console.log(`${!accessToken} There is no access token`);
 console.log(`userId: ${userId}`);
-
+*/
   useEffect(() => { checkLoggedInStatus(setLoggedIn, setAccessToken); handleCallback_afterLogin(redirect_uri, client_id, client_secret, setLoggedIn, setAccessToken); }, []);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);

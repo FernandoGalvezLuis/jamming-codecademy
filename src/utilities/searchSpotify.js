@@ -4,7 +4,7 @@ export const searchSpotify = async (query, accessToken, setResults) => {
 
     if (!accessToken) { return }
 
-    console.log('we passed the check for accessToken')
+    /*console.log('we passed the check for accessToken')*/
   
     try {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track`, {

@@ -45,10 +45,10 @@ function NewPlaylist({ handleName, playListName, description, setDescription, cu
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(accessToken)
+        console.log("from NewPlaylist" + accessToken)
 
         if (!accessToken) {
-            console.error('No access token available');
+            console.error('NewPlaylist: No access token available');
             return;
         }
     
