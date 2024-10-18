@@ -1,7 +1,7 @@
 // utilities/createPlaylistWithSelectedTracks.js
 
-export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, tracks, setPlaylists) => {
-  console.log(`tracks from cretePlaylistsWST: ${tracks}`)
+export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, tracks, setPlaylists, currentPlayList) => {
+  console.log(`currentPlaylist from cretePlaylistsWST: ${currentPlayList}`)
   
   if (!accessToken) return;
 
@@ -31,7 +31,7 @@ export const createPlaylistWithSelectedTracks = async (accessToken, userId, play
     setPlaylists(prevPlaylists => [...prevPlaylists, playlistData]);
 
     // Step 2: Add selected tracks to the newly created playlist
-    const urisToAdd = tracks.map(track => track.uri);
+    const urisToAdd = currentPlayList.map(track => track.uri);
     console.log(`urisToAdd: ${urisToAdd}`)
     const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${newPlaylistId}/tracks`, {
       method: 'POST',
