@@ -1,6 +1,6 @@
 // utilities/createPlaylistWithSelectedTracks.js
 
-export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, tracks, setPlaylists, currentPlayList) => {
+export const createPlaylistWithSelectedTracks = async (accessToken, userId, playlistName, description, setPlaylists, currentPlayList) => {
   console.log(`currentPlaylist from cretePlaylistsWST: ${currentPlayList}`)
   
   if (!accessToken) return;
