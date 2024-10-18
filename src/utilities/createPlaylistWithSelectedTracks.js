@@ -21,8 +21,11 @@ export const createPlaylistWithSelectedTracks = async (accessToken, userId, play
     });
 
     if (!createPlaylistResponse.ok) {
+      const errorResponse = await createPlaylistResponse.json();
+      console.error('Error details:', errorResponse);
       throw new Error('Failed to create playlist');
-    }
+  }
+  
 
     const playlistData = await createPlaylistResponse.json();
     const newPlaylistId = playlistData.id;

@@ -30,6 +30,8 @@ console.log(`userId: ${userId}`);
 
   useEffect(() => { fetchUserProfile(accessToken, setUserId, setUserDisplayName) }, [accessToken]);
 
+  useEffect(()=> {console.log(currentPlayList)}, [currentPlayList]);
+
   const handlePlayListNameChange = (event) => {
     setPlayListName(event.target.value);
 };
